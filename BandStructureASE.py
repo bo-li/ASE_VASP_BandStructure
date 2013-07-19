@@ -18,7 +18,7 @@ X = points['X']
 W = points['W']
 K = points['K']
 L = points['L']
-kpoints, x, X = get_bandpath([W, L, G, X, W, K], si_s.cell,50)
+kpoints, x, X = get_bandpath([W, L, G, X, W, K], si_s.cell,10)
 # Point names for plot axis
 point_names = ['W','L','G','W','K']
 
@@ -74,6 +74,7 @@ for a in range (len(bands)):
   bands[a,y] = bands[a,y] - Ef
 
 # Set up the plotting action
+print("The range range (0-",len(bands[0]),")")
 Range_L = int(raw_input("Which is the lower bound of the band range to plot? "))
 Range_U = int(raw_input("Which is the upper bound of the band range to plot? "))
 
