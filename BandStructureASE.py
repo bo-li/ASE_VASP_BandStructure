@@ -18,7 +18,7 @@ X = points['X']
 W = points['W']
 K = points['K']
 L = points['L']
-kpoints, x, X = get_bandpath([W, L, G, X, W, K], si_s.cell,10)
+kpoints, x, X = get_bandpath([W, L, G, X, W, K], si_s.cell,50)
 # Point names for plot axis
 point_names = ['W','L','G','W','K']
 
@@ -73,6 +73,24 @@ for a in range (len(bands)):
  for y in range (len(bands[0])):
   bands[a,y] = bands[a,y] - Ef
 
+# Find the CBM and VBM
+#num_conduction = 0
+#num_valence = 0
+#Valence_Values = np.zeros(shape=(0,0)) 
+#Conduction_Values = np.zeros(shape=(0,0))
+#for a in range (len(bands[0])):
+ #if bands[1,a] > 0:
+  #num_conduction = num_conduction + 1
+  #Conduction_Values.append(bands[:,a])
+ #elif bands[1,a] <= 0:
+  #num_valence = num_valence + 1
+  #Valence_Values.append(bands[:,a])
+#
+#Eg = min(Conduction_Values) - max(Valence_Values)
+#print("VBM: ", max(Valence_Values))
+#print("CBM: ",min(Conduction_Values))
+#print("Band gap: ", Eg)
+
 # Set up the plotting action
 print("The range range (0-",len(bands[0]),")")
 Range_L = int(raw_input("Which is the lower bound of the band range to plot? "))
@@ -87,4 +105,5 @@ for p in X:
 plt.plot([0,X[-1]],[0,0],'k-')
 plt.xticks(X, ['$%s$' % n for n in point_names])
 plt.axis(xmin=0, xmax=X[-1], ymin=e_min, ymax=e_max)
+#plt.fill_between
 plt.show()
